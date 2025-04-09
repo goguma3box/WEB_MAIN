@@ -1,5 +1,12 @@
-function pop_up() {
+function popup() {
     window.open("../popup/popup.html", "팝업테스트", "width=400, height=300, top=10, left=10");
+}
+
+function over(obj) {
+    obj.src="image/LOGO.png";
+}
+function out(obj) {
+    obj.src="image/LOGO2.jpg";
 }
 
 function show_clock(){
@@ -21,4 +28,4 @@ function show_clock(){
     divClock.style.color="red";
     }
     setTimeout(show_clock, 1000); //1초마다 갱신
-    }
+}
