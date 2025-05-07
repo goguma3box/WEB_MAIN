@@ -2,11 +2,12 @@ function init(){ // 로그인 폼에 쿠키에서 가져온 아이디 입력
         const emailInput = document.getElementById('typeEmailX');
         const idsave_check = document.getElementById('idSaveCheck');
         let get_id = getCookie("id");
-        
+
         if(get_id) {
         emailInput.value = get_id;
         idsave_check.checked = true;
         }
+        session_check();
 }
         
 
@@ -47,6 +48,20 @@ function getCookie(name) {
         return ;
 }
 
+function session_del() {//세션 삭제
+        if (sessionStorage) {
+                sessionStorage.removeItem("Session_Storage_test");
+                alert('로그아웃 버튼 클릭 확인 : 세션 스토리지를 삭제합니다.');
+        } else {
+                alert("세션 스토리지 지원 x");
+        }
+}
+
+function logout(){
+        session_del(); // 세션 삭제
+         location.href='../index.html';
+}
+        
 const check_input = () => {
         // 전역 변수 추가, 맨 위 위치
         const idsave_check = document.getElementById('idSaveCheck');
@@ -116,6 +131,7 @@ const check_input = () => {
 
         console.log('이메일:', emailValue);
         console.log('비밀번호:', passwordValue);
+        session_set();
         loginForm.submit();
 
         
