@@ -61,6 +61,17 @@ function logout(){
         session_del(); // 세션 삭제
          location.href='../index.html';
 }
+
+/*
+function login_failed()[
+        if (passwordValue == passwordInput) {
+                alert('로그인 완료')
+        } else {
+                alert('로그인 가능 횟수를 초과했습니다. 4분 간 로그인 할 수 없습니다.')
+                lockTime = Date.now() + 4 * 60 * 1000;
+        }
+]
+*/
         
 const check_input = () => {
         // 전역 변수 추가, 맨 위 위치
