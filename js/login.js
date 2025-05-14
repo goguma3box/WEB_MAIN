@@ -62,6 +62,59 @@ function logout(){
          location.href='../index.html';
 }
 
+function session_get() { //세션 읽기
+        if (sessionStorage) {
+                return sessionStorage.getItem("Session_Storage_pass");
+        } else {
+                alert("세션 스토리지 지원 x");
+        }
+}
+        
+function session_check() { //세션 검사
+        if (sessionStorage.getItem("Session_Storage_id")) {
+                alert("이미 로그인 되었습니다.");
+                location.href='../login/index_login.html'; // 로그인된 페이지로 이동
+        }
+}
+                
+/*
+function session_set() { //세션 저장
+        let session_id = document.querySelector("#typeEmailX"); // DOM 트리에서 ID 검색
+        let session_pass = document.querySelector("#typePasswordX"); // DOM 트리에서 pass 검색
+        if (sessionStorage) {
+                let en_text = encrypt_text(session_pass.value);
+                sessionStorage.setItem("Session_Storage_id", session_id.value);
+                sessionStorage.setItem("Session_Storage_pass", en_text);
+        } else {
+                alert("로컬 스토리지 지원 x");
+        }
+}
+*/
+
+function session_set() { //세션 저장
+        let session_id = document.querySelector("#typeEmailX"); // DOM 트리에서 ID 검색
+        let session_pass = document.querySelector("#typePasswordX"); // DOM 트리에서 pass 검색
+        if (sessionStorage) {
+                let en_text = encrypt_text(session_pass.value);
+                sessionStorage.setItem("Session_Storage_id", session_id.value);
+                sessionStorage.setItem("Session_Storage_pass", en_text);
+        } else {
+                alert("로컬 스토리지 지원 x");
+        }
+}
+
+function init_logined(){
+        if(sessionStorage){
+                decrypt_text(); // 복호화 함수
+        }
+
+        else{
+                alert("세션 스토리지 지원 x");
+        }
+}
+        
+        
+
 /*
 function login_failed()[
         if (passwordValue == passwordInput) {
@@ -76,6 +129,7 @@ function login_failed()[
 const check_input = () => {
         // 전역 변수 추가, 맨 위 위치
         const idsave_check = document.getElementById('idSaveCheck');
+
         const loginForm = document.getElementById('login_form');
         const loginBtn = document.getElementById('login_btn');
         const emailInput = document.getElementById('typeEmailX');
@@ -91,7 +145,12 @@ const check_input = () => {
         const sanitizedEmail = check_xss(emailValue);
         // check_xss 함수로 비밀번호 Sanitize
 
-
+        const payload = {
+                id: emailValue,
+                exp: Math.floor(Date.now() / 1000) + 3600 // 1시간 (3600초)
+        };
+        const jwtToken = generateJWT(payload);
+        
         if (emailValue === '') {
                 alert('이메일을 입력하세요.');
                 return false;
@@ -142,9 +201,9 @@ const check_input = () => {
 
         console.log('이메일:', emailValue);
         console.log('비밀번호:', passwordValue);
-        session_set();
+        session_set(); // 세션 생성
+        localStorage.setItem('jwt_token', jwtToken);
         loginForm.submit();
-
         
 };
 document.getElementById("login_btn").addEventListener('click', check_input);
