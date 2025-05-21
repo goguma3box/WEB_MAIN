@@ -2,21 +2,12 @@ import { session_set, session_get, session_check } from './session.js';
 import { encrypt_text, decrypt_text } from './crypto.js';
 import { generateJWT, checkAuth } from './jwt_token.js';
 
-function init(){ // 로그인 폼에 쿠키에서 가져온 아이디 입력
-        const emailInput = document.getElementById('typeEmailX');
-        const idsave_check = document.getElementById('idSaveCheck');
-        let get_id = getCookie("id");
-
-        if(get_id) {
-        emailInput.value = get_id;
-        idsave_check.checked = true;
-        }
-        session_check();
-}
         
 document.addEventListener('DOMContentLoaded', () => {
-        init();
+        checkAuth();
+        init_logined();
 });
+
 
 const check_xss = (input) => {
         // DOMPurify 라이브러리 로드 (CDN 사용)

@@ -13,7 +13,7 @@ const JWT_SECRET = "your_secret_key_here";
     return `${encodedHeader}.${encodedPayload}.${encodedSignature}`;
 }
 
-function verifyJWT(token) { // 토큰 검증
+export function verifyJWT(token) { // 토큰 검증
     try {
     // 1. 토큰을 헤더, 페이로드, 서명으로 분할
     const parts = token.split('.');
@@ -43,7 +43,7 @@ function isAuthenticated() { // 사용자 인증 상태 확인
     return !!payload; // 페이로드 유무로 인증 상태 판단
 }
 
-function checkAuth() { // 인증 검사 수행
+export function checkAuth() { // 인증 검사 수행
     const authenticated = isAuthenticated(); // 한 번만 검증 호출
 
     if (authenticated) {
