@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<!--이 부분은 주석문입니다.-->
+<html lang="ko">
+<html>
+    <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>LOL 메인화면</title>
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+            <meta name=“author” content=“학번”>
+            <meta name=“keywords” content=“computer”>
+            <base href="http://127.0.0.1:5500">
+            <!-- <script type="text/javascript" src="js/basic_js_test.js"></script>
+            <script type="text/javascript" src="js/search.js"></script>
+            <script type="text/javascript" src="js/data_type.js"></script>
+            <script type="text/javascript" src="js/popup.js"></script> -->
+            <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ae9bedb6e31d2eda4b2b7008aee7a758&libraries=services,clusterer,drawing"></script>
+            <script type="text/javascript" src="../js/map.js" defer></script>
+            <script type="stylesheet" src="../css/profile.css" defer></script>
+    </head>
+    <body style="background-color: black;">
+        <div style="display: flex; justify-content: center;">
+            <img src="image/LOGO.png" width="160" height="60" onmouseover="over(this)" onmouseout="out(this)">
+            <!-- <h3 style="font-size: 24px; font-weight: bold; font-style: italic; color: white;">
+                <a href="https://www.leagueoflegends.com/ko-kr/how-to-play/" target="_blank">
+                    게임 정보 
+                </a>
+                기본정보   챔피언 패치 노트   새소식 등 (메뉴 정보 입력하기)
+            </h3> -->
+            <nav class="navbar navbar-expand-lg bg-body-tertiary navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+                <div class="container-fluid">
+                  <a class="navbar-brand" href="#">홈페이지 테스트</a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                      <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5500/">메인페이지</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="https://www.leagueoflegends.com/ko-kr/how-to-play/">기본정보</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="https://www.leagueoflegends.com/ko-kr/champions/">챔피언</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="https://www.leagueoflegends.com/ko-kr/news/tags/patch-notes/">패치노트</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="https://www.leagueoflegends.com/ko-kr/news/">새소식</a>
+                      </li>
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          고객지원
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="https://download.kr.riotgames.com/league">게임 다운로드</a></li>
+                          <li><a class="dropdown-item" href="https://www.leagueoflegends.com/ko-kr/news/community/">롤 커뮤니티</a></li>
+                          <li><hr class="dropdown-divider"></li>
+                          <li><a class="dropdown-item" href="https://github.com/">깃 허브 페이지</a></li>
+                        </ul>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                      </li>
+                    </ul>
+                    <form class="d-flex" role="search" onsubmit="return googleSearch();">
+                      <input class="form-control me-2" id="search_input" name="q" type="search" placeholder="키워드 입력" aria-label="Search">
+                      <button class="btn btn-outline-success" id="search_btn" type="submit">검색하기</button>
+                    </form>
+                    <a href="login/login.html" class="btn btn-outline-success" id="login_btn">로그인 하기</a>
+                  </div>
+                </div>
+              </nav>
+        </div>
+        <hr>
+
+            <section style="background-color: #eee;">
+                    <div class="container py-5">
+                        <div class="row">
+                            <div class="col">
+                                <nav aria-label="breadcrumb" class="bg-body-tertiary rounded-3 p-3 mb-4">
+                                    <ol class="breadcrumb mb-0">
+                                        <li class="breadcrumb-item"><a href="#">홈</a></li>
+                                        <li class="breadcrumb-item"><a href="#">유저</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">유저 프로필</li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                        <div class="col-lg-4">
+                            <div class="card mb-4">
+                            <div class="card-body text-center">
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+                                class="rounded-circle img-fluid" style="width: 150px;">
+                                <h5 class="my-3">권영은</h5>
+                                <p class="text-muted mb-1">Full Stack Developer</p>
+                                <p class="text-muted mb-4">대한민국 경기도</p>
+                                <div class="d-flex justify-content-center mb-2">
+                                <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary">팔로우</button>
+                                <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-primary ms-1">메시지</button>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="card mb-4 mb-lg-0">
+                            <div class="card-body p-0">
+                                <ul class="list-group list-group-flush rounded-3">
+                                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                    <i class="fas fa-globe fa-lg text-warning"></i>
+                                    <p class="mb-0">https://mdbootstrap.com</p>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                    <i class="fab fa-github fa-lg text-body"></i>
+                                    <p class="mb-0">mdbootstrap</p>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                    <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
+                                    <p class="mb-0">@mdbootstrap</p>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                    <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
+                                    <p class="mb-0">mdbootstrap</p>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                    <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>
+                                    <p class="mb-0">mdbootstrap</p>
+                                </li>
+                                </ul>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="card mb-4">
+                            <div class="card-body">
+                                <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">이름</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0">권영은</p>
+                                </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">이메일</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0">example@example.com</p>
+                                </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">핸드폰</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0">(097) 234-5678</p>
+                                </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">모바일</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0">(098) 765-4321</p>
+                                </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">주소</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0">대한민국 경기도</p>
+                                </div>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="row">
+                            <div class="col-md-6">
+                                <div class="card mb-4 mb-md-0">
+                                <div class="card-body">
+                                    <p class="mb-4"><span class="text-primary font-italic me-1">assigment</span> Project Status
+                                    </p>
+                                    <p class="mb-1" style="font-size: .77rem;">Web Design</p>
+                                    <div class="progress rounded" style="height: 5px;">
+                                    <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80"
+                                        aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <p class="mt-4 mb-1" style="font-size: .77rem;">Website Markup</p>
+                                    <div class="progress rounded" style="height: 5px;">
+                                    <div class="progress-bar" role="progressbar" style="width: 72%" aria-valuenow="72"
+                                        aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <p class="mt-4 mb-1" style="font-size: .77rem;">One Page</p>
+                                    <div class="progress rounded" style="height: 5px;">
+                                    <div class="progress-bar" role="progressbar" style="width: 89%" aria-valuenow="89"
+                                        aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <p class="mt-4 mb-1" style="font-size: .77rem;">Mobile Template</p>
+                                    <div class="progress rounded" style="height: 5px;">
+                                    <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="55"
+                                        aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <p class="mt-4 mb-1" style="font-size: .77rem;">Backend API</p>
+                                    <div class="progress rounded mb-2" style="height: 5px;">
+                                    <div class="progress-bar" role="progressbar" style="width: 66%" aria-valuenow="66"
+                                        aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card mb-4 mb-md-0">
+                                <div class="card-body">
+                                    <p class="mb-4"><span class="text-primary font-italic me-1">assigment</span> Project Status
+                                    </p>
+                                    <p class="mb-1" style="font-size: .77rem;">Web Design</p>
+                                    <div class="progress rounded" style="height: 5px;">
+                                    <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80"
+                                        aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <p class="mt-4 mb-1" style="font-size: .77rem;">Website Markup</p>
+                                    <div class="progress rounded" style="height: 5px;">
+                                    <div class="progress-bar" role="progressbar" style="width: 72%" aria-valuenow="72"
+                                        aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <p class="mt-4 mb-1" style="font-size: .77rem;">One Page</p>
+                                    <div class="progress rounded" style="height: 5px;">
+                                    <div class="progress-bar" role="progressbar" style="width: 89%" aria-valuenow="89"
+                                        aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <p class="mt-4 mb-1" style="font-size: .77rem;">Mobile Template</p>
+                                    <div class="progress rounded" style="height: 5px;">
+                                    <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="55"
+                                        aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <p class="mt-4 mb-1" style="font-size: .77rem;">Backend API</p>
+                                    <div class="progress rounded mb-2" style="height: 5px;">
+                                    <div class="progress-bar" role="progressbar" style="width: 66%" aria-valuenow="66"
+                                        aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <!-- <div id="map" style="width:800px;height:400px;"></div> -->
+                            <p><em>지도를 클릭해주세요!</em></p>
+                            <div id="clickLatlng"></div>
+                            <div class="map_wrap">
+                                <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+
+                                <div id="menu_wrap" class="bg_white">
+                                    <div class="option">
+                                        <div>
+                                            <form onsubmit="searchPlaces(); return false;">
+                                                키워드 : <input type="text" value="이태원 맛집" id="keyword" size="15"> 
+                                                <button type="submit">검색하기</button> 
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <ul id="placesList"></ul>
+                                    <div id="pagination"></div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </section>
+
+                <hr>
+        <div class="container-fluid" style="display: flex; justify-content: center;">
+        </div>
+        <style>
+            table {
+            font-size: 20pt;
+            color: white;
+            }
+        </style>
+        <div style="display: flex; justify-content: center;">
+            <table class="table cpation-top" border="5">
+                <thead>
+                  <tr class="table-primary">
+                    <th scope="col">#</th>
+                    <th scope="col">1</th>
+                    <th scope="col">2</th>
+                    <th scope="col">3</th>
+                    <th scope="col">4</th>
+                    <th scope="col">5</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="table-secondary">
+                    <th>1</th>
+                    <td>사이온</td>
+                    <td>아리</td>
+                    <td>가렌</td>
+                    <td>가렌1</td>
+                    <td>가렌2</td>
+                  </tr>
+                  <tr class="table-success">
+                    <th>공백</th>
+                    <td><a href="https://www.leagueoflegends.com/ko-kr/">롤 웹사이트 접속하기</a></td>
+                  </tr>
+                  <tr class="table-danger">
+                    <th>2</th>
+                    <td><b>카직스</b></td>
+                    <td>루시안</td>
+                    <td>루시안2</td>
+                    <td><img src="image/image_bi.jpg" width="100" height="100">바이,바이2</td>
+                  </tr>
+                </tbody>
+              </table>
+            <!-- <table border="1">
+                    <caption>인기 캐릭터</caption>
+                <tbody class="table-group-divider">
+                    <tr bgcolor="red">
+                        <td width="100">사이온</td>
+                        <td>아리</td>
+                        <td>가렌</td>
+                        <td width="160">가렌2</td>
+                        <td width="160">가렌3</td>
+                    </tr>
+                    <tr bgcolor="grey">
+                        <td colspan="5"><a href="https://www.leagueoflegends.com/ko-kr/">롤 웹사이트 접속하기</a>
+                        </td>
+                    </tr>
+                    <tr height="100">
+                        <td bgcolor="blue"><b>카직스</b></td>
+                        <td>루시안</td>
+                        <td>루시안2</td>
+                        <td colspan="2"><font size="24"><img src="image/image_bi.jpg" width="100" height="100">바이1, 2</font></td>
+                    </tr>
+                </tbody>
+            </table>     -->
+        </div>
+        <hr>
+        <div class="container-fluid" style="display: flex; justify-content: center;">
+            <h3 style="font-size: 24px; font-weight: bold; font-style: italic; color: white; font-family: '굴림';">
+                라이엇 게임 회사 정보 2025년 3월 작성됨
+            </h3>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    </body>
+</html>
