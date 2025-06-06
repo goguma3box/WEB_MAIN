@@ -55,6 +55,48 @@ function getCookie(name) {
         return ;
 }
 
+function login_failed() {
+  let failCount = parseInt(getCookie('login_fail_count')) || 0;
+  failCount += 1;
+  setCookie('login_fail_count', failCount);
+
+  let isLocked = failCount >= 3;
+  setCookie('login_locked', isLocked ? '1' : '0');
+
+  updateLoginStatus();
+}
+
+// 로그인 제한 및 실패 횟수 표시
+function updateLoginStatus() {
+  const failCount = parseInt(getCookie('login_fail_count')) || 0;
+  const isLocked = getCookie('login_locked') === '1';
+
+  document.getElementById('failCount').innerText = `실패 횟수: ${failCount}`;
+  document.getElementById('lockStatus').innerText = isLocked
+    ? '로그인 제한 상태입니다.'
+    : '로그인 가능';
+
+  // 로그인 제한 시 입력/버튼 비활성화
+  document.getElementById('loginBtn').disabled = isLocked;
+}
+
+function tryLogin() {
+  const username = document.getElementById('username').value;
+  const password = document.getElementById('password').value;
+
+  // 실제 인증 로직 대신 예시로 'user'/'pass'만 성공 처리
+  if (username === 'user' && password === 'pass') {
+    alert('로그인 성공');
+    setCookie('login_fail_count', 0); // 성공 시 실패횟수 초기화
+    setCookie('login_locked', '0');
+    updateLoginStatus();
+  } else {
+    login_failed();
+    alert('로그인 실패');
+  }
+}
+
+
 function session_del() {//세션 삭제
         if (sessionStorage) {
                 sessionStorage.removeItem("Session_Storage_test");
